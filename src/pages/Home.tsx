@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, Check, Star, Trophy, Users, Activity } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
 const Home = () => {
@@ -25,7 +25,6 @@ const Home = () => {
     e.preventDefault();
     setIsSubmitting(true);
     
-    // Simulate form submission
     setTimeout(() => {
       setIsSubmitting(false);
       setShowSuccess(true);
@@ -38,6 +37,60 @@ const Home = () => {
       setTimeout(() => setShowSuccess(false), 3000);
     }, 1000);
   };
+
+  const membershipPlans = [
+    {
+      name: 'Basic',
+      price: '5,000',
+      features: [
+        'Access to gym equipment',
+        'Basic fitness assessment',
+        'Locker room access',
+        '2 Group classes per week'
+      ]
+    },
+    {
+      name: 'Premium',
+      price: '8,000',
+      features: [
+        'All Basic features',
+        'Unlimited group classes',
+        'Personal trainer (2 sessions/month)',
+        'Nutrition consultation'
+      ]
+    },
+    {
+      name: 'Elite',
+      price: '12,000',
+      features: [
+        'All Premium features',
+        'Personal trainer (8 sessions/month)',
+        'Monthly body composition analysis',
+        'Premium locker with amenities'
+      ]
+    }
+  ];
+
+  const testimonials = [
+    {
+      name: 'Sarah Khan',
+      role: 'Professional Athlete',
+      image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&q=80',
+      quote: 'Ray Fitness has transformed my training routine. The facilities and trainers are world-class!'
+    },
+    {
+      name: 'Ahmed Ali',
+      role: 'Business Executive',
+      image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&q=80',
+      quote: 'The flexible hours and expert guidance helped me maintain my fitness despite my busy schedule.'
+    },
+    {
+      name: 'Fatima Zahra',
+      role: 'Yoga Enthusiast',
+      image: 'https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&q=80',
+      quote: 'The yoga classes and mindfulness sessions have brought balance to my life. Highly recommended!'
+    }
+  ];
 
   return (
     <div className="relative">
@@ -58,6 +111,88 @@ const Home = () => {
             >
               Start Your Journey
             </button>
+          </div>
+        </div>
+      </div>
+
+      {/* Stats Section */}
+      <div className="bg-black py-12">
+        <div className="max-w-6xl mx-auto px-4">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+            <div className="text-center">
+              <Users className="h-8 w-8 text-red-600 mx-auto mb-2" />
+              <div className="text-3xl font-bold">5000+</div>
+              <div className="text-gray-400">Happy Members</div>
+            </div>
+            <div className="text-center">
+              <Trophy className="h-8 w-8 text-red-600 mx-auto mb-2" />
+              <div className="text-3xl font-bold">50+</div>
+              <div className="text-gray-400">Expert Trainers</div>
+            </div>
+            <div className="text-center">
+              <Activity className="h-8 w-8 text-red-600 mx-auto mb-2" />
+              <div className="text-3xl font-bold">100+</div>
+              <div className="text-gray-400">Fitness Classes</div>
+            </div>
+            <div className="text-center">
+              <Star className="h-8 w-8 text-red-600 mx-auto mb-2" />
+              <div className="text-3xl font-bold">15+</div>
+              <div className="text-gray-400">Years Experience</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Membership Plans */}
+      <div className="py-20 bg-gray-900">
+        <div className="max-w-6xl mx-auto px-4">
+          <h2 className="text-3xl font-bold text-center mb-12">Membership Plans</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {membershipPlans.map((plan, index) => (
+              <div key={index} className="bg-black p-8 rounded-lg transform hover:scale-105 transition-all">
+                <h3 className="text-2xl font-bold mb-4">{plan.name}</h3>
+                <div className="text-3xl font-bold text-red-600 mb-6">
+                  Rs. {plan.price}
+                  <span className="text-sm text-gray-400">/month</span>
+                </div>
+                <ul className="space-y-4 mb-8">
+                  {plan.features.map((feature, i) => (
+                    <li key={i} className="flex items-center space-x-3">
+                      <Check className="h-5 w-5 text-red-600" />
+                      <span>{feature}</span>
+                    </li>
+                  ))}
+                </ul>
+                <button className="w-full bg-red-600 text-white py-3 rounded-md hover:bg-red-700 transition-colors">
+                  Choose Plan
+                </button>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* Testimonials */}
+      <div className="py-20 bg-black">
+        <div className="max-w-6xl mx-auto px-4">
+          <h2 className="text-3xl font-bold text-center mb-12">What Our Members Say</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {testimonials.map((testimonial, index) => (
+              <div key={index} className="bg-gray-900 p-8 rounded-lg">
+                <div className="flex items-center space-x-4 mb-6">
+                  <img
+                    src={testimonial.image}
+                    alt={testimonial.name}
+                    className="w-16 h-16 rounded-full object-cover"
+                  />
+                  <div>
+                    <h4 className="font-bold">{testimonial.name}</h4>
+                    <p className="text-gray-400">{testimonial.role}</p>
+                  </div>
+                </div>
+                <p className="text-gray-300 italic">"{testimonial.quote}"</p>
+              </div>
+            ))}
           </div>
         </div>
       </div>
@@ -115,33 +250,11 @@ const Home = () => {
             </button>
           </form>
 
-          {/* Success Message */}
           {showSuccess && (
             <div className="mt-4 p-4 bg-green-600 text-white rounded-md text-center animate-fade-in">
               Thank you for your interest! We'll contact you shortly.
             </div>
           )}
-        </div>
-      </div>
-
-      {/* Why Choose Us */}
-      <div className="py-20 bg-black">
-        <div className="max-w-6xl mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">Why Choose Ray Fitness?</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="bg-gray-900 p-8 rounded-lg transform hover:scale-105 transition-all hover:bg-gray-800">
-              <h3 className="text-xl font-bold mb-4">State-of-the-art Equipment</h3>
-              <p className="text-gray-300">Access to the latest fitness equipment and technology to help you achieve your goals effectively.</p>
-            </div>
-            <div className="bg-gray-900 p-8 rounded-lg transform hover:scale-105 transition-all hover:bg-gray-800">
-              <h3 className="text-xl font-bold mb-4">Expert Trainers</h3>
-              <p className="text-gray-300">Our certified trainers provide personalized guidance and support throughout your fitness journey.</p>
-            </div>
-            <div className="bg-gray-900 p-8 rounded-lg transform hover:scale-105 transition-all hover:bg-gray-800">
-              <h3 className="text-xl font-bold mb-4">Flexible Schedule</h3>
-              <p className="text-gray-300">Open 24/7 with various class timings to fit your busy lifestyle and training preferences.</p>
-            </div>
-          </div>
         </div>
       </div>
     </div>
